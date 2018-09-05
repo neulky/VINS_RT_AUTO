@@ -43,6 +43,9 @@ add_executable(estimator_rt
     src/utility/visualization.cpp
     src/utility/CameraPoseVisualization.cpp
     src/initial/initial_ex_rotation.cpp
+    src/initial/solve_5pts.cpp
+    src/initial/initial_sfm.cpp
+    src/initial/initial_alignment.cpp
     )
 
 

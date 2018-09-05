@@ -5,6 +5,9 @@
 #include "utility/utility.h"
 #include "utility/tic_toc.h"
 #include "initial/initial_ex_rotation.h"
+#include "initial/initial_sfm.h"
+#include "initial/initial_alignment.h"
+#include "initial/solve_5pts.h"
 
 #include <std_msgs/Header.h>
 #include <std_msgs/Float32.h>
@@ -44,6 +47,12 @@ public:
   
   void slideWindowOld();
   
+  bool initialStructure();
+  
+  bool visualInitialAlign();
+  
+  bool relativePose(Matrix3d &relative_R, Vector3d &relative_T, int &l);
+  
   enum MarginalizationFlag
   {
     MARGIN_OLD = 0,
@@ -58,6 +67,7 @@ public:
   
   MarginalizationFlag marginalization_flag;
   SolverFlag solver_flag;
+  Vector3d g;
   
   Matrix3d ric[NUM_OF_CAM];
   Vector3d tic[NUM_OF_CAM];
@@ -79,9 +89,13 @@ public:
   
   Matrix3d back_R0, last_R, last_R0;
   Vector3d back_P0, last_P, last_P0;
+  std_msgs::Header Headers[(WINDOW_SIZE + 1)];
+  map<double, ImageFrame> all_image_frame;
   
   FeatureManager f_manager;
   InitialEXRotation initial_ex_rotation;
+  MotionEstimator m_estimator;
+  
   int frame_count;
   
   int sum_of_front, sum_of_back;

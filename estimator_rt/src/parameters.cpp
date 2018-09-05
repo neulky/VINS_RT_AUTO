@@ -10,6 +10,7 @@ Eigen::Vector3d G{0.0, 0.0, 9.8};
 
 double SOLVER_TIME;
 int ESTIMATE_EXTRINSIC;
+int ESTIMATE_EXTRINSIC_TIC = 2;
 int ESTIMATE_TD;
 double ROW, COL;
 double TD, TR;

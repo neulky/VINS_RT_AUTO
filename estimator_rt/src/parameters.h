@@ -16,6 +16,7 @@ const int NUM_OF_F = 1000;
 extern double INIT_DEPTH;
 extern double MIN_PARALLAX;
 extern int ESTIMATE_EXTRINSIC;
+extern int ESTIMATE_EXTRINSIC_TIC;
 
 extern std::string EX_CALIB_RESULT_PATH;
 

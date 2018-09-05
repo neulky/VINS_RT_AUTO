@@ -12,6 +12,9 @@
 #include "utility/visualization.h"
 #include "estimator.h"
 #include "parameters.h"
+#include "fstream"
+
+using namespace std;
 
 Estimator estimator;
 
@@ -39,6 +42,9 @@ void feature_callback(const sensor_msgs::PointCloudConstPtr &feature_msg)
     feature_buf.push(feature_msg);
     m_buf.unlock();
     con.notify_one();
+    
+    ROS_INFO_STREAM("stamp = " << setprecision(19) << feature_msg->header.stamp);
+    ROS_INFO_STREAM("stamp.tosec() = " << setprecision(19) << feature_msg->header.stamp);
 }
 
 void pose_callback(const geometry_msgs::PoseStampedConstPtr &pose_msg)
